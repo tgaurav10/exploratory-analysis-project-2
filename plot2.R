@@ -1,0 +1,6 @@
+library(dplyr)
+png(filename="plot2.png", height=480, width=600,bg="white")
+NEI <- readRDS("summarySCC_PM25.rds")
+final <- NEI %.% filter(fips=="24510") %.% group_by(year) %.% summarise(total= sum(Emissions))
+plot(final$year, final$total, type="o", col="blue")
+dev.off()
